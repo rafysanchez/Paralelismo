@@ -19,7 +19,8 @@ var listaCep = new List<CepModel>();
 
 Parallel.ForEach(ceps, parallelOptions, cep =>
 {
-    listaCep.Add(new ViaCepService().GetCep(cep));
+    listaCep.Add(new ViaCepService().GetCep(cep) );
+   Console.WriteLine(new ViaCepService().GetCep(cep) + $" Thread: {Thread.CurrentThread.ManagedThreadId.ToString()}");
 });
 
 // foreach(var cep in ceps)
@@ -30,7 +31,7 @@ stopWatch.Stop();
 
 Console.WriteLine($"O Tempo de processamento total é de {stopWatch.ElapsedMilliseconds} ms");
 
-listaCep.ToList().ForEach(cep => Console.WriteLine(cep));
+// listaCep.ToList().ForEach(cep => Console.WriteLine(cep));
 
 
 
